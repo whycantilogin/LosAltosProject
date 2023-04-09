@@ -5,7 +5,7 @@ public class Main {
         JFrame window=new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(true);
-        window.setTitle("Health!");
+        window.setTitle("Nutrify");
         AppPanel appPanel=new AppPanel();
         window.add(appPanel);
         window.pack();

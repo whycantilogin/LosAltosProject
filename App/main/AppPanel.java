@@ -6,13 +6,14 @@ import javax.swing.*;
 
 import App.user.Entity;
 import App.user.User;
+import App.main.Disease;
 
 /*
 * upper left corner is x:0, y:0
 * x increases to the right
 * y increases going down
 */
-public class AppPanel extends JPanel implements Runnable {
+public class AppPanel extends JPanel implements Runnable{
     final int originalSize = 24; // 16x16 tile is now 24x24 tile :)
     final int scale = 3;
     public final int tileSize = originalSize * scale; // 48x48 tile demo, this is 72x72
@@ -32,7 +33,7 @@ public class AppPanel extends JPanel implements Runnable {
     int FPS = 60;
 
     public KeyHandler keyH = new KeyHandler(this);
-    public UI ui = new UI(this);
+    public UI ui = new UI(this,new Disease());
     // public EventHandler eHandler = new EventHandler(this);
     Thread gameThread;
 
@@ -55,7 +56,7 @@ public class AppPanel extends JPanel implements Runnable {
 
     public AppPanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-        this.setBackground(Color.blue);
+        this.setBackground(Color.pink);
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
@@ -93,12 +94,9 @@ public class AppPanel extends JPanel implements Runnable {
             if(gameFreeze==1) {
                 update();
             }
-            System.out.println("gameState: "+gameState);
         }
         repaint();
-        System.out.println("gameFreeze: "+gameFreeze+" gameState: "+gameState);
         if(gameFreeze==1 && gameState==6) {
-            System.out.println("Hi!");
             gameFreeze=0;
             while(gameThread!=null) {
                 currentTime = System.nanoTime();

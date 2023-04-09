@@ -5,7 +5,7 @@ import App.main.AppPanel;
 import App.main.KeyHandler;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
+// import java.awt.image.BufferedImage;
 
 public class User extends Entity {
     // GamePanel ap;

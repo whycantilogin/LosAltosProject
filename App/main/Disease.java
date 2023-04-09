@@ -6,6 +6,19 @@ package App.main;
 // import java.util.Scanner;
 
 public class Disease {
+    public double suggestedMinProtein;
+    public double suggestedMaxProtein;
+    public int suggestedMinCaloriesWomen;
+    public int suggestedMaxCaloriesWomen;
+    public int suggestedMinCaloriesMen;
+    public int suggestedMaxCaloriesMen;
+    public int suggestedSugar;
+    public int suggestedFluid;
+    public int suggestedVitaminC;
+    public int suggestedMinVitaminD;
+    public int suggestedMaxVitaminD ;
+    public double suggestedFruit;
+    public double suggestedVegetable;
 //     public static void main(String[] args) {
 //         KeyHandler keyHandler = new Scanner(System.in);
         
@@ -45,122 +58,266 @@ public class Disease {
 
 //         scanner.close();
 //     }
-}
 
-class LungCancer{
-    //per kilogram of body weight
-    public int suggestedMinCalories = 25;
-    public int suggestedMaxCalories = 30;
-    public double suggestedMinProtien = 1.0;
-    public double suggestedMaxProtien = 1.5;
-}
-class colorectalCancer{
-        //in nmol/L
-        public int suggestedMinVitaminD = 75;
-        public int suggestedMaxVitaminD = 100;
-}
-class pancreaticCancer{
-    //64 ounces of fluid
-    public int suggestedFluid = 64;
+    public void general() {
+        suggestedMinProtein=1.0;
+        suggestedMaxProtein=1.5;
+        suggestedSugar=50;
+        suggestedMinCaloriesMen=2000;
+        suggestedMaxCaloriesMen=2400;
+        suggestedMinCaloriesWomen=2000;
+        suggestedMaxCaloriesWomen=2400;
+        suggestedMinVitaminD = 75;
+        suggestedMaxVitaminD = 100;
+        suggestedVegetable=3.0;
+    }
+
+    public void lungCancer(){
+        suggestedMinCaloriesWomen = 1600;
+        suggestedMinCaloriesMen = 2000;
+        suggestedMaxCaloriesWomen = 2400;
+        suggestedMaxCaloriesMen=3000;
+        suggestedMinProtein = 1.0;
+        suggestedMaxProtein = 1.5;
+        suggestedVegetable=3.0;
+        suggestedMinVitaminD = 75;
+        suggestedMaxVitaminD = 100;
+        suggestedSugar=50;
+
+    }
+    public void colorectalCancer(){
+            //in nmol/L
+            suggestedMinVitaminD = 75;
+            suggestedMaxVitaminD = 100;
+            suggestedMinProtein=1.0;
+        suggestedMaxProtein=1.5;
+        suggestedSugar=50;
+        suggestedMinCaloriesMen=2000;
+        suggestedMaxCaloriesMen=2400;
+        suggestedMinCaloriesWomen=2000;
+        suggestedMaxCaloriesWomen=2400;
+        suggestedVegetable=3.0;
+    }
+    public void pancreaticCancer(){
+        //64 ounces of fluid
+        suggestedFluid = 64;
+        suggestedMinCaloriesMen=2000;
+        suggestedMaxCaloriesMen=2400;
+        suggestedMinCaloriesWomen=2000;
+        suggestedMaxCaloriesWomen=2400;
+        suggestedMinVitaminD = 75;
+        suggestedMaxVitaminD = 100;
+        suggestedVegetable=3.0;
+        //high protien
+        suggestedMinProtein = 1.0;
+        suggestedMaxProtein = 1.5;
+        //less sugar, in grams
+        suggestedSugar = 50;
+    }
+    public void esophagealCancer(){
+        //high calories and protien
+        suggestedSugar=50;
+
+        suggestedMinVitaminD = 75;
+        suggestedMaxVitaminD = 100;
+        suggestedVegetable=3.0;
+        suggestedMinCaloriesWomen = 2000;
+        suggestedMinCaloriesMen=2000;
+        suggestedMaxCaloriesWomen = 2800;
+        suggestedMaxCaloriesMen=2800;
+
+        suggestedMinProtein = 1.0;
+        suggestedMaxProtein = 1.5;
+
+    }
+    public void kidneyCancer(){
+        // servings of fruits and v, in cups egetables
+        suggestedFruit = 2;
+        suggestedVegetable = 2.5;
+        //more calories
+        suggestedMinCaloriesWomen = 1600;
+        suggestedMaxCaloriesWomen = 2400;
+
+        suggestedMinCaloriesMen = 2000;
+        suggestedMaxCaloriesMen = 3000;
+
+        suggestedMinProtein=1.0;
+        suggestedMaxProtein=1.5;
+        suggestedSugar=50;
+        suggestedMinVitaminD = 75;
+        suggestedMaxVitaminD = 100;
+    }
+    public void stomachCancer(){
+        //high protien and calories
+        suggestedMinProtein = 1.2;
+        suggestedMaxProtein = 1.5;
+
+        suggestedMinCaloriesWomen = 1600;
+        suggestedMaxCaloriesWomen = 2400;
+        suggestedMinCaloriesMen = 2000;
+        suggestedMaxCaloriesMen = 3000; 
+        //more vitamin C, in mg
+         int suggestedVitaminC = 100;
+
+         suggestedSugar=50;
+         suggestedMinVitaminD = 75;
+         suggestedMaxVitaminD = 100;
+         suggestedVegetable=3.0;
+        //more fiber, in g
+         int suggestedFiber = 10;
+
+    }
+    public void uterineCancer(){
+        //more fruit, vegetable,  in terms of cups
+         suggestedFruit = 2;
+        suggestedVegetable = 2.5;
+
+        //low meat and diary, per grams for each kg of body weight
+        suggestedMinProtein = 0.8;
+        suggestedMaxProtein=0.8;
+        suggestedSugar=50;
+        suggestedMinCaloriesMen=2000;
+        suggestedMaxCaloriesMen=2400;
+        suggestedMinCaloriesWomen=2000;
+        suggestedMaxCaloriesWomen=2400;
+        suggestedMinVitaminD = 75;
+        suggestedMaxVitaminD = 100;
+    }
     
-    //high protien
-    public double suggestedMinProtien = 1.0;
-    public double suggestedMaxProtien = 1.5;
-    //less sugar, in grams
-    public int suggestedSugar = 50;
-}
-class esophagealCancer{
-    //high calories and protien
-    public int suggestedMinCalories = 2000;
-    public int suggestedMaxCalories = 2800;
+    public void bladderCancer(){ //1st to edit
+        suggestedMinCaloriesWomen = 1600;
+        suggestedMaxCaloriesWomen = 2400;
+        suggestedMinCaloriesMen = 2000;
+        suggestedMaxCaloriesMen = 3000; 
+        suggestedMinProtein=1.0;
+        suggestedMaxProtein=1.5;
+        suggestedSugar=50;
+        suggestedMinVitaminD = 75;
+        suggestedMaxVitaminD = 100;
+        suggestedVegetable=3.0;
+        suggestedFluid = 64;
+    //grams
+        // public int suggestedMinCarbon = 20;
+        // public int suggestedMaxCarbon = 57;
+    }
 
-    public double suggestedMinProtien = 1.0;
-    public double suggestedMaxProtien = 1.5;
+    public void brainCancer(){
+    //low carb, high protein, high fat,
+        suggestedMinProtein = 1.0;
+        suggestedMaxProtein = 1.5;
+        suggestedSugar=50;
+        suggestedMinCaloriesMen=2000;
+        suggestedMaxCaloriesMen=2400;
+        suggestedMinCaloriesWomen=2000;
+        suggestedMaxCaloriesWomen=2400;
+        suggestedMinVitaminD = 75;
+        suggestedMaxVitaminD = 100;
+        suggestedVegetable=3.0;
+    }
 
-}
-class kidneyCancer{
-    // servings of fruits and v, in cups egetables
-    public double suggestedMinFruits = 2;
-    public double suggestedMinVegetables = 2.5;
-    //more calories
-    public int suggestedMinCaloriesWomen = 1600;
-    public int suggestedMinCaloriesMen = 2000;
-    public int suggestedMaxCaloriesMen = 3000;
-}
-class stomachCancer{
-    //high protien and calories
-    public double suggestedMinProtien = 1.2;
-    public double suggestedMaxProtien = 1.5;
+    public void boneCancer(){
+        suggestedMinProtein = 1.0;
+        suggestedMaxProtein = 1.5;
+        suggestedMinVitaminD = 75;
+        suggestedMaxVitaminD = 100;
+        suggestedSugar=50;
+        suggestedMinCaloriesMen=2000;
+        suggestedMaxCaloriesMen=2400;
+        suggestedMinCaloriesWomen=2000;
+        suggestedMaxCaloriesWomen=2400;
+        suggestedVegetable=3.0;
+    }
 
-    public int suggestedMinCaloriesWomen = 1600;
-    public int suggestedMaxCaloriesWomen = 2400;
-    public int suggestedMinCaloriesMen = 2000;
-    public int suggestedMaxCaloriesMen = 3000; 
-    //more vitamin C, in mg
-    public int suggestedVitaminC = 100;
-    //more fiber, in g
-    public int suggestedFiber = 10;
+    public void breastCancer(){
+        suggestedMinProtein = 1.0;
+        suggestedMaxProtein = 1.5;
+        suggestedFruit = 2;
+        suggestedVegetable = 2.5;
+        suggestedSugar=50;
+        suggestedMinCaloriesMen=2000;
+        suggestedMaxCaloriesMen=2400;
+        suggestedMinCaloriesWomen=2000;
+        suggestedMaxCaloriesWomen=2400;
+        suggestedMinVitaminD = 75;
+        suggestedMaxVitaminD = 100;
+    }
 
-}
-class uterineCancer{
-    //more fruit, vegetable,  in terms of cups
-    public double suggestedFruit = 2;
-    public double suggestedVegetable = 2.5;
-
-    //low meat and diary, per grams for each kg of body weight
-    public double suggestedProtien = 0.8;
-}
- 
-class bladderCancer{ //1st to edit
-    public int suggestedMinCaloriesWomen = 1600;
-    public int suggestedMaxCaloriesWomen = 2400;
-    public int suggestedMinCaloriesMen = 2000;
-    public int suggestedMaxCaloriesMen = 3000; 
-
-    public int suggestedFluid = 64;
-//grams
-    public int suggestedMinCarbon = 20;
-    public int suggestedMaxCarbon = 57;
-}
-
-class brainCancer{
-   //low carb, high protein, high fat,
-}
-
-class bonesuterboneer{
-
-}
-
-class breastuterinbreast{
-  
-}
-
-class CerviclterineCervicalC{
-
-}    
+    public void cervicalCancer(){
+        suggestedFruit = 2;
+        suggestedVegetable = 2.5;
+        suggestedMinProtein=1.0;
+        suggestedMaxProtein=1.5;
+        suggestedSugar=50;
+        suggestedMinCaloriesMen=2000;
+        suggestedMaxCaloriesMen=2400;
+        suggestedMinCaloriesWomen=2000;
+        suggestedMaxCaloriesWomen=2400;
+        suggestedMinVitaminD = 75;
+        suggestedMaxVitaminD = 100;
+    }    
 
 
-class colonnclasscolon{
-   
-}
-
-class leukemiaerineCleukemia{
-
-}
-
-
-class MesotmeliomaeCanceMesotmelioma{
-
-} 
-
-
-
-class OvarionterineOvarian{
-
-}
-  
+    public void leukemiaCancer(){
+        suggestedFruit = 3.5;
+        suggestedVegetable = 3.5;
+        suggestedMinProtein = 0.8;
+        suggestedMaxProtein=0.8;
+        suggestedSugar=50;
+        suggestedMinCaloriesMen=2000;
+        suggestedMaxCaloriesMen=2400;
+        suggestedMinCaloriesWomen=2000;
+        suggestedMaxCaloriesWomen=2400;
+        suggestedMinVitaminD = 75;
+        suggestedMaxVitaminD = 100;
+    }
 
 
-class Thyrotdterinethyroid{
+    public void mesothelioma(){
+        suggestedMinProtein = 1.0;
+        suggestedMaxProtein = 1.5;
+        suggestedFruit = 3.5;
+        suggestedVegetable = 3.5;
+        suggestedSugar=50;
+        suggestedMinCaloriesMen=2000;
+        suggestedMaxCaloriesMen=2400;
+        suggestedMinCaloriesWomen=2000;
+        suggestedMaxCaloriesWomen=2400;
+        suggestedMinVitaminD = 75;
+        suggestedMaxVitaminD = 100;
+    } 
+
+
+
+    public void ovarianCancer(){
+        suggestedFruit = 2.5;
+        suggestedVegetable = 3.5;
+        suggestedMinProtein = 0.8;
+        suggestedMaxProtein=0.8;
+
+        suggestedSugar=50;
+        suggestedMinCaloriesMen=2000;
+        suggestedMaxCaloriesMen=2400;
+        suggestedMinCaloriesWomen=2000;
+        suggestedMaxCaloriesWomen=2400;
+        suggestedMinVitaminD = 75;
+        suggestedMaxVitaminD = 100;
+    }
+    
+
+
+    public void thyroidCancer(){
+    //less iodine, in micrograms
+    suggestedMinProtein = 1.0;
+    suggestedMaxProtein = 1.5;
+
+    suggestedSugar=50;
+    suggestedMinCaloriesMen=2000;
+    suggestedMaxCaloriesMen=2400;
+    suggestedMinCaloriesWomen=2000;
+    suggestedMaxCaloriesWomen=2400;
+    suggestedMinVitaminD = 75;
+    suggestedMaxVitaminD = 100;
+    suggestedVegetable=3.0;
+    }
 
 }
