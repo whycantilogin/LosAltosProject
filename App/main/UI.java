@@ -199,6 +199,8 @@ public class UI implements Runnable{
             proteinArea.setForeground(Color.RED);
         }
         else proteinArea.setForeground(Color.GREEN);
+        proteinArea.setHorizontalAlignment(JLabel.CENTER);
+        proteinArea.setFont(new Font("Serif", Font.PLAIN, 40));
         proteinArea.setText("The suggested amount of protein for you was "+(d.suggestedMinProtein+d.suggestedMaxProtein)/2+", and your intake was "+percentage+"% of that.");
 
         JLabel caloriesArea=new JLabel();
@@ -217,7 +219,9 @@ public class UI implements Runnable{
             caloriesArea.setForeground(Color.RED);
         }
         else caloriesArea.setForeground(Color.GREEN);
-        caloriesArea.setText("The suggested amount of calories for you was "+(cal_min+cal_max)/2+", and your intake was "+percentage+"% of that.");
+        caloriesArea.setHorizontalAlignment(JLabel.CENTER);
+        caloriesArea.setFont(new Font("Serif", Font.PLAIN, 40));
+        caloriesArea.setText("The suggested amount of calories for you was "+(cal_min+cal_max)/2.0+", and your intake was "+percentage+"% of that.");
 
         JLabel vitaminsArea=new JLabel();
         percentage=(Integer.parseInt(vitaminField.getText())/(d.suggestedMinVitaminD+d.suggestedMaxVitaminD)/2.0)*100.0;
@@ -225,6 +229,8 @@ public class UI implements Runnable{
             vitaminsArea.setForeground(Color.RED);
         }
         else vitaminsArea.setForeground(Color.GREEN);
+        vitaminsArea.setHorizontalAlignment(JLabel.CENTER);
+        vitaminsArea.setFont(new Font("Serif", Font.PLAIN, 40));
         vitaminsArea.setText("The suggested amount of vitamins for you was "+(d.suggestedMinVitaminD+d.suggestedMaxVitaminD)/2+", and your intake was "+percentage+"% of that.");
 
         JLabel sugarArea=new JLabel();
@@ -233,6 +239,8 @@ public class UI implements Runnable{
             sugarArea.setForeground(Color.RED);
         }
         else sugarArea.setForeground(Color.GREEN);
+        sugarArea.setHorizontalAlignment(JLabel.CENTER);
+        sugarArea.setFont(new Font("Serif", Font.PLAIN, 40));
         sugarArea.setText("The suggested amount of sugar for you was "+(d.suggestedSugar)+", and your intake was "+percentage+"% of that.");
 
         JLabel vegetablesArea=new JLabel();
@@ -241,6 +249,8 @@ public class UI implements Runnable{
             vegetablesArea.setForeground(Color.RED);
         }
         else vegetablesArea.setForeground(Color.GREEN);
+        vegetablesArea.setHorizontalAlignment(JLabel.CENTER);
+        vegetablesArea.setFont(new Font("Serif", Font.PLAIN, 40));
         vegetablesArea.setText("The suggested amount of vegetables for you was "+d.suggestedVegetable+", and your intake was "+percentage+"% of that.");
 
         panel.add(proteinArea);
@@ -379,8 +389,8 @@ public class UI implements Runnable{
         panel.add(heightField);
         panel.add(saveButton);
         ap.gameState=8;
-        g2.setColor(Color.GREEN);
-        g2.drawString("testing", 50, 80);
+        // g2.setColor(Color.GREEN);
+        // g2.drawString("testing", 50, 80);
         frame.setVisible(true);
         
         saveButton.addActionListener(new ActionListener() {
