@@ -1,16 +1,17 @@
 package App.main;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.io.*;
 import java.text.DecimalFormat;
-import App.user.Entity;
-import App.main.GraphOfCalories;
 // import object.heart;
 // import object.Ribbons.ribbon1;
-public class UI {
+public class UI{
+    public JTextField weightField= new JTextField("10");
+
     AppPanel ap;
     Graphics2D g2;
-    GraphOfCalories gCalories;
+    GraphsOfEverything gEverything;
     // Font arial_40, arial_80Bold;
     Font purisaBold;
     // BufferedImage heart_full, heart_half, heart_blank;
@@ -61,23 +62,33 @@ public class UI {
         if(ap.gameState==ap.selectCancerState) {
             selectMenu();
         } 
+
+        //entering nutrition values
+        if(ap.gameState==ap.enterValuesState) { //have to move the program from selectCancerState to this enterValuesState
+            System.out.println("in the entering state");
+            enterValues();
+        }
+        //getting user's personal info
+        if(ap.gameState==ap.personalInfoState) {
+            System.out.println("personal info state");
+            getPersonalInfo();
+        }
         // play state
         if (ap.gameState == ap.playState) {
-            // drawPlayerLife();
+            //DISPLAY THE GRAPHS/STATS FOR USER
+            //add the recommendations for user based on entered info
         }
         // pause state
         if (ap.gameState == ap.pauseState) {
-            // drawPlayerLife();
             drawPauseScreen();
         }
         // dialogue state
         if (ap.gameState == ap.dialogueState) {
-            // drawPlayerLife();
             drawDialogueScreen();
         }
         //draw calories graph
         if(ap.gameState==ap.selectCalories) {
-            gCalories.drawCaloriesGraph();
+            gEverything.drawCaloriesGraph();
         }
         if (gameFinished) {
             g2.setFont(g2.getFont().deriveFont(30F));
@@ -115,13 +126,6 @@ public class UI {
             g2.setFont(purisaBold);
             // g2.setFont(arial_40);
             g2.setColor(Color.white);
-            // g2.drawImage(ribbon1Image, 5, 5,ap.tileSize,ap.tileSize,null);
-            // g2.drawString("x " + ap.player.hasRibbons,74,54); // the y is the baseline
-
-            // time
-            // playTime += (double) 1 / 60;
-            // g2.drawString("Time:" + dFormat.format(playTime), ap.tileSize * 11, 54);
-
             // message
             if (messageOn) {
                 g2.setFont(g2.getFont().deriveFont(30F));
@@ -135,6 +139,106 @@ public class UI {
             }
         }
 
+    }
+
+    public void enterValues() {
+        System.out.println("starting this stage"); //not getting to here!
+        JFrame frame=new JFrame("Entering Nutrition Values");
+        frame.setVisible(true);
+        frame.setSize(72*20,72*11);
+        JPanel panel=new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        frame.add(panel);
+        JLabel proteinLabel = new JLabel("Protein consumed (g):");
+        JTextField proteinField = new JTextField("10");
+        JLabel caloriesLabel = new JLabel("Calories consumed (kcal): ");
+        JTextField caloriesField = new JTextField("10");
+        JLabel vitaminLabel = new JLabel("Vitamin A consumed(mg):");
+        JTextField vitaminField = new JTextField("10");
+        JLabel fruitLabel = new JLabel("Fruits consumed(cups): ");
+        JTextField fruitField = new JTextField("10");
+        JLabel vegLabel = new JLabel("Vegetables consumed(cups): ");
+        JTextField vegField = new JTextField("10");
+
+        JButton saveButton = new JButton("Save");
+        saveButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                ap.gameState=7;
+                // ap.gameState=6;
+                // ap.gameFreeze =1;
+                System.out.println("changed to: "+ap.gameState);
+                frame.setVisible(false); //exit this frame/scre  
+         
+             }
+        });
+
+        panel.add(proteinLabel);
+        panel.add(proteinField);
+        panel.add(caloriesLabel);
+        panel.add(caloriesField);
+        panel.add(vitaminLabel);
+        panel.add(vitaminField);
+        panel.add(fruitLabel);
+        panel.add(fruitField);
+        panel.add(vegLabel);
+        panel.add(vegField); 
+        panel.add(saveButton);
+        
+        double protein = Double.parseDouble(proteinField.getText());
+        double weight = Double.parseDouble(weightField.getText());
+        double ratio=protein/weight;
+        JLabel resultLabel = new JLabel("Protein-to-weight ratio: " + ratio);
+        panel.add(resultLabel);
+        ap.gameState=7; //change?? I am going delirious :D
+        frame.setVisible(true);
+        //https://fdc.nal.usda.gov/api-guide.html        //api to implement : https://foodapi.calorieking.com/v1
+
+        
+    }
+    public void getPersonalInfo(){
+        JFrame frame = new JFrame("Entering Personal Information");
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(72*20,72*11);
+        JPanel panel=new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        frame.add(panel);
+        JLabel nameLabel = new JLabel("Name:");
+        JTextField nameField = new JTextField("10");
+        JLabel ageLabel = new JLabel("Age:");
+        JTextField ageField = new JTextField("10");
+        JLabel genderLabel = new JLabel("Gender:");
+        JTextField genderField = new JTextField("10");
+        JLabel weightLabel = new JLabel("Weight:");
+        // this.weightField = new JTextField("10");
+        JLabel heightLabel = new JLabel("Height:");
+        JTextField heightField = new JTextField("10");
+        
+        JButton saveButton = new JButton("Save");
+        saveButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                ap.gameState=6;
+                // ap.gameFreeze =1;
+                System.out.println("changed to: "+ap.gameState);
+                frame.setVisible(false); //exit this frame/scre  
+         
+             }
+        });
+
+        panel.add(nameLabel);
+        panel.add(nameField);
+        panel.add(ageLabel);
+        panel.add(ageField);
+        panel.add(genderLabel);
+        panel.add(genderField);
+        panel.add(weightLabel);
+        panel.add(weightField);
+        panel.add(heightLabel);
+        panel.add(heightField);
+        panel.add(saveButton);
+
+        frame.setVisible(true);
     }
 
     public void selectMenu() {
@@ -156,7 +260,7 @@ public class UI {
         panel.add(lbl);
     
         String[] choices = { "Bladder Cancer", "Brain Cancer", "Bone Cancer", "Breast Cancer",
-                             "Cervical Cancer", "Colon  Cancer", "Kidney Cancer", "Leukemia Cancer", "Lung Cancer", 
+                             "Cervical Cancer", "Colon Cancer", "Kidney Cancer", "Leukemia Cancer", "Lung Cancer", 
                             "Mesothelioma", "Ovarian Cancer", "Pancreatic Cancer", "Prostate Cancer", "Thyroid Cancer",
                             "Uterine Cancer"};
     
@@ -169,18 +273,20 @@ public class UI {
         JButton btn = new JButton("OK");
         btn.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(btn);
+        btn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                // ap.gameState=6;
+                ap.gameFreeze =1;
+                System.out.println("changed to: "+ap.gameState);
+                frame.setVisible(false); //exit this frame/scre  
+                ap.gameState=7;
+             }
+        });
+        ap.gameState=6;
         frame.setVisible(true);
-        if(btn.getModel().isPressed()) {
-            System.out.println("button is pressed!");
-            ap.gameState=ap.playState;
-            //exit this screen
-            frame.setVisible(false);
-        }
+
     }
-
-
-
-
     public void drawTitleScreen() {
         if (titleScreenState == 0) {
             // title screen background color
@@ -188,7 +294,7 @@ public class UI {
             g2.fillRect(0, 0, ap.screenWidth, ap.screenHeight);
             // title name
             g2.setFont(g2.getFont().deriveFont(Font.BOLD, 96F));
-            String text = "My app!";
+            String text = "My app!"; //TITLE OF THE PROGRAM
             int x = getXforCenteredText(text);
             int y = ap.tileSize * 2;
 
@@ -203,7 +309,6 @@ public class UI {
             // display image
             x = ap.screenWidth / 2 - (ap.tileSize * 2) / 2;
             y += ap.tileSize * 2;
-            // g2.drawImage(ap.player.down1,x,y,ap.tileSize*2,ap.tileSize*2,null);
 
             // menu
             g2.setFont(g2.getFont().deriveFont(Font.BOLD, 48F));
@@ -276,7 +381,7 @@ public class UI {
             x = getXforCenteredText(text);
             y += ap.tileSize * 2;
             g2.drawString(text, x, y);
-            if (commandNum == 2) {
+            if (commandNum == 3) {
                 g2.drawString(">", x - ap.tileSize, y);
             }
         }

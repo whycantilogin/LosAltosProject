@@ -46,17 +46,13 @@ public class User extends Entity {
     public void update() {
         if (keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
             if (keyH.upPressed) {
-                direction = "up";
-                // worldY-=speed;
+                // direction = "up";
             } else if (keyH.downPressed) {
-                direction = "down";
-                // worldY+=speed;
+                // direction = "down";
             } else if (keyH.leftPressed) {
-                direction = "left";
-                // worldX-=speed;
+                // direction = "left";
             } else if (keyH.rightPressed) {
-                direction = "right";
-                // worldX+=speed;
+                // direction = "right";
             }
             ap.keyH.enterPressed = false;
         }

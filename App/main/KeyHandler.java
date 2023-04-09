@@ -59,7 +59,7 @@ public class KeyHandler implements KeyListener{
                 }
                 if(code==KeyEvent.VK_DOWN) {
                     ap.ui.commandNum++;
-                    if(ap.ui.commandNum>3) {
+                    if(ap.ui.commandNum>2) {
                         ap.ui.commandNum=0;
                     }
                 }
@@ -75,16 +75,22 @@ public class KeyHandler implements KeyListener{
                         ap.gameState=4;
                         // ap.gameState=ap.selectCancerState; //moving to next state!
                     }
+                    // if(ap.ui.commandNum==2) {
+                    //     System.out.println("Calories");
+                    //     // ap.gameState=ap.selectCalories; //testing out caloric graph 
+                    //     ap.gameState=5;
+                    // }
                     if(ap.ui.commandNum==2) {
-                        System.out.println("Calories");
-                        // ap.gameState=ap.selectCalories; //testing out caloric graph 
-                        ap.gameState=5;
-                    }
-                    if(ap.ui.commandNum==3) {
                         ap.ui.titleScreenState=0; //"back" was selected
                     }
                 }
             }
+        }
+
+        //select Cancer State
+        if(ap.gameState==ap.selectCancerState) {
+            //if button is pressed...
+            //this if statement might not be necessary?
         }
 
         //play state

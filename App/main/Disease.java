@@ -79,20 +79,23 @@ class esophagealCancer{
 
 }
 class kidneyCancer{
-    // more fruits & vegetables
+    // servings of fruits and v, in cups egetables
     public double suggestedMinFruits = 2;
     public double suggestedMinVegetables = 2.5;
     //more calories
-    public int suggestedMinCalories = 1600;
-    public int suggestedMaxCalories = 3000;
+    public int suggestedMinCaloriesWomen = 1600;
+    public int suggestedMinCaloriesMen = 2000;
+    public int suggestedMaxCaloriesMen = 3000;
 }
 class stomachCancer{
     //high protien and calories
     public double suggestedMinProtien = 1.2;
     public double suggestedMaxProtien = 1.5;
 
-    public int suggestedMinCalories = 1600;
-    public int suggestedMaxCalories = 3000;  
+    public int suggestedMinCaloriesWomen = 1600;
+    public int suggestedMaxCaloriesWomen = 2400;
+    public int suggestedMinCaloriesMen = 2000;
+    public int suggestedMaxCaloriesMen = 3000; 
     //more vitamin C, in mg
     public int suggestedVitaminC = 100;
     //more fiber, in g
@@ -100,8 +103,64 @@ class stomachCancer{
 
 }
 class uterineCancer{
-    //more fruit, vegetable, grain
+    //more fruit, vegetable,  in terms of cups
+    public double suggestedFruit = 2;
+    public double suggestedVegetable = 2.5;
 
-    //low meat and diary
-    // less fat
+    //low meat and diary, per grams for each kg of body weight
+    public double suggestedProtien = 0.8;
+}
+ 
+class bladderCancer{ //1st to edit
+    public int suggestedMinCaloriesWomen = 1600;
+    public int suggestedMaxCaloriesWomen = 2400;
+    public int suggestedMinCaloriesMen = 2000;
+    public int suggestedMaxCaloriesMen = 3000; 
+
+    public int suggestedFluid = 64;
+//grams
+    public int suggestedMinCarbon = 20;
+    public int suggestedMaxCarbon = 57;
+}
+
+class brainCancer{
+   //low carb, high protein, high fat,
+}
+
+class bonesuterboneer{
+
+}
+
+class breastuterinbreast{
+  
+}
+
+class CerviclterineCervicalC{
+
+}    
+
+
+class colonnclasscolon{
+   
+}
+
+class leukemiaerineCleukemia{
+
+}
+
+
+class MesotmeliomaeCanceMesotmelioma{
+
+} 
+
+
+
+class OvarionterineOvarian{
+
+}
+  
+
+
+class Thyrotdterinethyroid{
+
 }

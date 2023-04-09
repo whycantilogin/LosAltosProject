@@ -49,6 +49,9 @@ public class AppPanel extends JPanel implements Runnable {
     public final int dialogueState = 3;
     public final int selectCancerState=4;
     public final int selectCalories=5;
+    public final int enterValuesState=6;
+    public final int personalInfoState=7;
+    public final int graphState=8;
 
     public AppPanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -75,12 +78,10 @@ public class AppPanel extends JPanel implements Runnable {
         long lastTime = System.nanoTime();
         long currentTime;
         while (gameFreeze==0 && gameThread != null) {
-            if(gameState==selectCancerState) { //gameState isn't being changed to selectCancerState???
-            System.out.println("in select state");
-            repaint();
-            gameFreeze=1;
+            if(gameState==selectCancerState) {
+                repaint();
+                gameFreeze=1;
             }
-            // System.out.println("Gamestate: "+gameState);
             currentTime = System.nanoTime();
             delta += (currentTime - lastTime) / drawInterval;
             lastTime = currentTime;
@@ -89,33 +90,27 @@ public class AppPanel extends JPanel implements Runnable {
                 repaint();
                 delta--;
             }
+            if(gameFreeze==1) {
+                update();
+            }
+            System.out.println("gameState: "+gameState);
         }
-        
-        // while (gameThread != null) {
-        //     currentTime = System.nanoTime();
-        //     delta += (currentTime - lastTime) / drawInterval;
-        //     lastTime = currentTime;
-        //     if (delta >= 1) {
-        //         update();
-        //         repaint();
-        //         delta--;
-        //     }
-        // }
-
-        // double drawInterval = 1000000000 / FPS;
-        // double delta = 0;
-        // long lastTime = System.nanoTime();
-        // long currentTime;
-        // while (gameThread != null) {
-        //     currentTime = System.nanoTime();
-        //     delta += (currentTime - lastTime) / drawInterval;
-        //     lastTime = currentTime;
-        //     if (delta >= 1) {
-        //         update();
-        //         repaint();
-        //         delta--;
-        //     }
-        // }
+        repaint();
+        System.out.println("gameFreeze: "+gameFreeze+" gameState: "+gameState);
+        if(gameFreeze==1 && gameState==6) {
+            System.out.println("Hi!");
+            gameFreeze=0;
+            while(gameThread!=null) {
+                currentTime = System.nanoTime();
+            delta += (currentTime - lastTime) / drawInterval;
+            lastTime = currentTime;
+            if (delta >= 1) {
+                update();
+                repaint();
+                delta--;
+            }
+            }
+        }
     }
 
     public void update() {
@@ -147,23 +142,6 @@ public class AppPanel extends JPanel implements Runnable {
         //     ui.draw(g2);
         // }
         else {
-
-            // // sort
-            // Collections.sort(entityList, new Comparator<Entity>() {
-            //     @Override
-            //     public int compare(Entity e1, Entity e2) {
-            //         return Integer.compare(e1.worldY, e2.worldY);
-            //     }
-            // });
-
-            // // draw entities
-            // for (int i = 0; i < entityList.size(); i++)
-            //     entityList.get(i).draw(g2);
-            // // clear entity list
-            // entityList.clear();
-
-
-
             // UI
             ui.draw(g2);
         }

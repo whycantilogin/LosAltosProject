@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "PersonalInfo",
+            "request": "launch",
+            "mainClass": "App.main.PersonalInfo",
+            "projectName": "LosAltosProject_33cdd3b3"
+        },
+        {
+            "type": "java",
             "name": "SelectMenu",
             "request": "launch",
             "mainClass": "App.main.SelectMenu",

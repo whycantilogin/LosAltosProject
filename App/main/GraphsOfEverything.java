@@ -7,14 +7,14 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 
-public class GraphOfCalories extends JFrame implements ActionListener{
+public class GraphsOfEverything extends JFrame implements ActionListener{
     Graphics2D g2;
     private JTextField caloriesField;
     private JLabel caloriesLabel = new JLabel("Calories: ");
     private int caloriesAmt = 2000;
     private JButton b;
 
-    public GraphOfCalories() {
+    public GraphsOfEverything() {
         super("GraphOfCalories");
 
         setLayout(new GridLayout(4, 2));
