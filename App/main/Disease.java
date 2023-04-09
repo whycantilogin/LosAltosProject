@@ -62,25 +62,46 @@ class colorectalCancer{
 class pancreaticCancer{
     //64 ounces of fluid
     public int suggestedFluid = 64;
+    
     //high protien
-    //less sugar
-
+    public double suggestedMinProtien = 1.0;
+    public double suggestedMaxProtien = 1.5;
+    //less sugar, in grams
+    public int suggestedSugar = 50;
 }
 class esophagealCancer{
     //high calories and protien
+    public int suggestedMinCalories = 2000;
+    public int suggestedMaxCalories = 2800;
+
+    public double suggestedMinProtien = 1.0;
+    public double suggestedMaxProtien = 1.5;
+
 }
 class kidneyCancer{
     // more fruits & vegetables
+    public double suggestedMinFruits = 2;
+    public double suggestedMinVegetables = 2.5;
     //more calories
+    public int suggestedMinCalories = 1600;
+    public int suggestedMaxCalories = 3000;
 }
 class stomachCancer{
     //high protien and calories
-    //more vitamin C
-    //more fiber
-    //less sugar
+    public double suggestedMinProtien = 1.2;
+    public double suggestedMaxProtien = 1.5;
+
+    public int suggestedMinCalories = 1600;
+    public int suggestedMaxCalories = 3000;  
+    //more vitamin C, in mg
+    public int suggestedVitaminC = 100;
+    //more fiber, in g
+    public int suggestedFiber = 10;
+
 }
 class uterineCancer{
     //more fruit, vegetable, grain
+
     //low meat and diary
-// less fat
+    // less fat
 }

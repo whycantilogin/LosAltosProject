@@ -5,12 +5,12 @@ import java.io.*;
 import java.text.DecimalFormat;
 import App.user.Entity;
 import App.main.GraphOfCalories;
-
 // import object.heart;
 // import object.Ribbons.ribbon1;
 public class UI {
     AppPanel ap;
     Graphics2D g2;
+    GraphOfCalories gCalories;
     // Font arial_40, arial_80Bold;
     Font purisaBold;
     // BufferedImage heart_full, heart_half, heart_blank;
@@ -74,6 +74,10 @@ public class UI {
         if (ap.gameState == ap.dialogueState) {
             // drawPlayerLife();
             drawDialogueScreen();
+        }
+        //draw calories graph
+        if(ap.gameState==ap.selectCalories) {
+            gCalories.drawCaloriesGraph();
         }
         if (gameFinished) {
             g2.setFont(g2.getFont().deriveFont(30F));
@@ -139,7 +143,7 @@ public class UI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // frame.setSize(500, 500);
         frame.setSize(72*20,72*11);
-        frame.setLocation(430, 100);
+        // frame.setLocation(430, 100);
     
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -173,6 +177,9 @@ public class UI {
             frame.setVisible(false);
         }
     }
+
+
+
 
     public void drawTitleScreen() {
         if (titleScreenState == 0) {
@@ -246,6 +253,14 @@ public class UI {
             y += ap.tileSize;
             g2.drawString(text, x, y);
             if (commandNum == 1) {
+                g2.drawString(">", x - ap.tileSize, y);
+            }
+
+            text = "Calorie";
+            x = getXforCenteredText(text);
+            y += ap.tileSize;
+            g2.drawString(text, x, y);
+            if (commandNum == 2) {
                 g2.drawString(">", x - ap.tileSize, y);
             }
 

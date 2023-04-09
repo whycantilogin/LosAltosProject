@@ -19,20 +19,16 @@ public class Entity {
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     public String direction = "down";
 
-    public Rectangle solidArea = new Rectangle(0, 0, 48, 48); // solid portion of character
-    public int solidAreaDefaultX, solidAreaDefaultY;
-    public int actionLockCounter = 0;
-    public boolean invincible = false;
-    public int invincibleCounter = 0;
+    // public Rectangle solidArea = new Rectangle(0, 0, 48, 48); // solid portion of character
+    // public int solidAreaDefaultX, solidAreaDefaultY;
+    // public int actionLockCounter = 0;
+    // public boolean invincible = false;
+    // public int invincibleCounter = 0;
     String dialogues[] = new String[30];
     int dialogueIndex = 0;
     public BufferedImage image, image2, image3;
     public String name;
     public int type; // 0=player, 1=npc, 2=monster
-
-    // character status
-    public int maxLife;
-    public int life;
 
     public Entity(AppPanel ap) {
         this.ap = ap;
@@ -128,6 +124,7 @@ public class Entity {
         //     }
             // g2.drawImage(image, screenX, screenY, ap.tileSize, ap.tileSize, null);
         // }
+
 
     }
 

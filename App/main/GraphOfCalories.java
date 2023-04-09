@@ -37,7 +37,6 @@ public class GraphOfCalories extends JFrame implements ActionListener{
 
         g2.drawRect(10, 10, 2000, 2500);
 
-        int graphHeight = 3000;
 
         g2.drawRect(20, 2400- caloriesAmt, 20, caloriesAmt);
 
@@ -52,7 +51,7 @@ public class GraphOfCalories extends JFrame implements ActionListener{
     {
         String s = e.getActionCommand();
         if (s.equals("Submit")) {
-            caloriesAmt = caloriesField.getText();
+            caloriesAmt = Integer.parseInt(caloriesField.getText());
         }
     }
 }

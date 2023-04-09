@@ -59,25 +59,28 @@ public class KeyHandler implements KeyListener{
                 }
                 if(code==KeyEvent.VK_DOWN) {
                     ap.ui.commandNum++;
-                    if(ap.ui.commandNum>2) {
+                    if(ap.ui.commandNum>3) {
                         ap.ui.commandNum=0;
                     }
                 }
                 if(code==KeyEvent.VK_ENTER) {
                     if(ap.ui.commandNum==0) {
                         System.out.println("female selected!");
-                        ap.gameState=ap.selectCancerState; //moving to next state!
+                        // ap.gameState=ap.selectCancerState; //moving to next state!
+                        ap.gameState=4;
                         ap.playMusic(0);
                     }
                     if(ap.ui.commandNum==1) {
                         System.out.println("male selected!"); 
-                        ap.gameState=ap.selectCancerState; //moving to next state!
+                        ap.gameState=4;
+                        // ap.gameState=ap.selectCancerState; //moving to next state!
                     }
-                    // if(ap.ui.commandNum==2) {
-                    //     System.out.println("some sorcerer specific stuff!");
-                    //     ap.gameState=ap.playState;
-                    // }
                     if(ap.ui.commandNum==2) {
+                        System.out.println("Calories");
+                        // ap.gameState=ap.selectCalories; //testing out caloric graph 
+                        ap.gameState=5;
+                    }
+                    if(ap.ui.commandNum==3) {
                         ap.ui.titleScreenState=0; //"back" was selected
                     }
                 }

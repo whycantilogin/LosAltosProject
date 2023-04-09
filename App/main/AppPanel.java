@@ -20,6 +20,7 @@ public class AppPanel extends JPanel implements Runnable {
     public final int maxScreenRow = 11;
     public final int screenWidth = tileSize * maxScreenCol; // 768 pixels not anymore
     public final int screenHeight = tileSize * maxScreenRow; // 576 pixels not anymore
+    public int gameFreeze=0;
 
     // WORLD SETTINGS
     public final int maxWorldCol = 80; // original: 50
@@ -47,6 +48,7 @@ public class AppPanel extends JPanel implements Runnable {
     public final int pauseState = 2;
     public final int dialogueState = 3;
     public final int selectCancerState=4;
+    public final int selectCalories=5;
 
     public AppPanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -72,7 +74,13 @@ public class AppPanel extends JPanel implements Runnable {
         double delta = 0;
         long lastTime = System.nanoTime();
         long currentTime;
-        while (gameThread != null) {
+        while (gameFreeze==0 && gameThread != null) {
+            if(gameState==selectCancerState) { //gameState isn't being changed to selectCancerState???
+            System.out.println("in select state");
+            repaint();
+            gameFreeze=1;
+            }
+            // System.out.println("Gamestate: "+gameState);
             currentTime = System.nanoTime();
             delta += (currentTime - lastTime) / drawInterval;
             lastTime = currentTime;
@@ -82,6 +90,18 @@ public class AppPanel extends JPanel implements Runnable {
                 delta--;
             }
         }
+        
+        // while (gameThread != null) {
+        //     currentTime = System.nanoTime();
+        //     delta += (currentTime - lastTime) / drawInterval;
+        //     lastTime = currentTime;
+        //     if (delta >= 1) {
+        //         update();
+        //         repaint();
+        //         delta--;
+        //     }
+        // }
+
         // double drawInterval = 1000000000 / FPS;
         // double delta = 0;
         // long lastTime = System.nanoTime();
@@ -122,21 +142,27 @@ public class AppPanel extends JPanel implements Runnable {
         // title scren
         if (gameState == titleState) {
             ui.draw(g2);
-        } else {
+        } 
+        // else if(gameState==selectCancerState) {
+        //     ui.draw(g2);
+        // }
+        else {
 
-            // sort
-            Collections.sort(entityList, new Comparator<Entity>() {
-                @Override
-                public int compare(Entity e1, Entity e2) {
-                    return Integer.compare(e1.worldY, e2.worldY);
-                }
-            });
+            // // sort
+            // Collections.sort(entityList, new Comparator<Entity>() {
+            //     @Override
+            //     public int compare(Entity e1, Entity e2) {
+            //         return Integer.compare(e1.worldY, e2.worldY);
+            //     }
+            // });
 
-            // draw entities
-            for (int i = 0; i < entityList.size(); i++)
-                entityList.get(i).draw(g2);
-            // clear entity list
-            entityList.clear();
+            // // draw entities
+            // for (int i = 0; i < entityList.size(); i++)
+            //     entityList.get(i).draw(g2);
+            // // clear entity list
+            // entityList.clear();
+
+
 
             // UI
             ui.draw(g2);
