@@ -54,31 +54,31 @@ public class KeyHandler implements KeyListener{
                 if(code==KeyEvent.VK_UP) {
                     ap.ui.commandNum--;
                     if(ap.ui.commandNum<0) {
-                        ap.ui.commandNum=3;
+                        ap.ui.commandNum=2;
                     }
                 }
                 if(code==KeyEvent.VK_DOWN) {
                     ap.ui.commandNum++;
-                    if(ap.ui.commandNum>3) {
+                    if(ap.ui.commandNum>2) {
                         ap.ui.commandNum=0;
                     }
                 }
                 if(code==KeyEvent.VK_ENTER) {
                     if(ap.ui.commandNum==0) {
-                        System.out.println("some fighter specific stuff!");
-                        ap.gameState=ap.playState;
+                        System.out.println("female selected!");
+                        ap.gameState=ap.selectCancerState; //moving to next state!
                         ap.playMusic(0);
                     }
                     if(ap.ui.commandNum==1) {
-                        System.out.println("some thief specific stuff!");
-                        ap.gameState=ap.playState;
+                        System.out.println("male selected!"); 
+                        ap.gameState=ap.selectCancerState; //moving to next state!
                     }
+                    // if(ap.ui.commandNum==2) {
+                    //     System.out.println("some sorcerer specific stuff!");
+                    //     ap.gameState=ap.playState;
+                    // }
                     if(ap.ui.commandNum==2) {
-                        System.out.println("some sorcerer specific stuff!");
-                        ap.gameState=ap.playState;
-                    }
-                    if(ap.ui.commandNum==3) {
-                        ap.ui.titleScreenState=0;
+                        ap.ui.titleScreenState=0; //"back" was selected
                     }
                 }
             }

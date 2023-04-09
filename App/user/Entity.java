@@ -19,11 +19,8 @@ public class Entity {
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     public String direction = "down";
 
-    public int spriteCounter = 0;
-    public int spriteNum = 1;
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48); // solid portion of character
     public int solidAreaDefaultX, solidAreaDefaultY;
-    public boolean collisionOn = false;
     public int actionLockCounter = 0;
     public boolean invincible = false;
     public int invincibleCounter = 0;
@@ -31,7 +28,6 @@ public class Entity {
     int dialogueIndex = 0;
     public BufferedImage image, image2, image3;
     public String name;
-    public boolean collision = false;
     public int type; // 0=player, 1=npc, 2=monster
 
     // character status
@@ -71,7 +67,6 @@ public class Entity {
 
     public void update() {
         setAction();
-        collisionOn = false;
         // ap.cChecker.checkTile(this);
         // ap.cChecker.checkObject(this, false);
         // ap.cChecker.checkEntity(this, ap.npc);
@@ -86,34 +81,6 @@ public class Entity {
         // }
         // }
 
-        // if collision is false, player can move
-        if (!collisionOn) {
-            switch (direction) {
-                case "up":
-                    worldY -= speed;
-                    break;
-                case "down":
-                    worldY += speed;
-                    break;
-                case "left":
-                    worldX -= speed;
-                    break;
-                case "right":
-                    worldX += speed;
-                    break;
-            }
-        }
-
-        spriteCounter++;
-        if (spriteCounter > 12) { // player image changes every 12 frames between the two images for each
-                                  // direction
-            if (spriteNum == 1) {
-                spriteNum = 2;
-            } else if (spriteNum == 2) {
-                spriteNum = 1;
-            }
-            spriteCounter = 0;
-        }
     }
 
     public void draw(Graphics2D g2) {
@@ -121,46 +88,46 @@ public class Entity {
         int screenX = worldX - ap.player.worldX + ap.player.screenX;
         int screenY = worldY - ap.player.worldY + ap.player.screenY;
 
-        if (worldX + ap.tileSize > ap.player.worldX - ap.player.screenX
-                && worldX - ap.tileSize < ap.player.worldX + ap.player.screenX
-                && worldY + ap.tileSize > ap.player.worldY - ap.player.screenY
-                && worldY - ap.tileSize < ap.player.worldY + ap.player.screenY) {
-            switch (direction) {
-                case "up":
-                    if (spriteNum == 1) {
-                        image = up1;
-                    }
-                    if (spriteNum == 2) {
-                        image = up2;
-                    }
-                    break;
-                case "down":
-                    if (spriteNum == 1) {
-                        image = down1;
-                    }
-                    if (spriteNum == 2) {
-                        image = down2;
-                    }
-                    break;
-                case "left":
-                    if (spriteNum == 1) {
-                        image = left1;
-                    }
-                    if (spriteNum == 2) {
-                        image = left2;
-                    }
-                    break;
-                case "right":
-                    if (spriteNum == 1) {
-                        image = right1;
-                    }
-                    if (spriteNum == 2) {
-                        image = right2;
-                    }
-                    break;
-            }
-            g2.drawImage(image, screenX, screenY, ap.tileSize, ap.tileSize, null);
-        }
+        // if (worldX + ap.tileSize > ap.player.worldX - ap.player.screenX
+        //         && worldX - ap.tileSize < ap.player.worldX + ap.player.screenX
+        //         && worldY + ap.tileSize > ap.player.worldY - ap.player.screenY
+        //         && worldY - ap.tileSize < ap.player.worldY + ap.player.screenY) {
+        //     switch (direction) {
+        //         case "up":
+        //             if (spriteNum == 1) {
+        //                 image = up1;
+        //             }
+        //             if (spriteNum == 2) {
+        //                 image = up2;
+        //             }
+        //             break;
+        //         case "down":
+        //             if (spriteNum == 1) {
+        //                 image = down1;
+        //             }
+        //             if (spriteNum == 2) {
+        //                 image = down2;
+        //             }
+        //             break;
+        //         case "left":
+        //             if (spriteNum == 1) {
+        //                 image = left1;
+        //             }
+        //             if (spriteNum == 2) {
+        //                 image = left2;
+        //             }
+        //             break;
+        //         case "right":
+        //             if (spriteNum == 1) {
+        //                 image = right1;
+        //             }
+        //             if (spriteNum == 2) {
+        //                 image = right2;
+        //             }
+        //             break;
+        //     }
+            // g2.drawImage(image, screenX, screenY, ap.tileSize, ap.tileSize, null);
+        // }
 
     }
 

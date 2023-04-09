@@ -1,14 +1,7 @@
 package App.main;
 
 import java.awt.*;
-// import java.awt.Color;
-// import java.awt.Dimension;
-// import java.awt.Graphics;
-// import java.awt.Graphics2D;
 import java.util.*;
-// import java.util.ArrayList;
-// import java.util.Collections;
-// import java.util.Comparator;
 import javax.swing.*;
 
 import App.user.Entity;
@@ -19,7 +12,6 @@ import App.user.User;
 * x increases to the right
 * y increases going down
 */
-// import tile.TileManager;
 public class AppPanel extends JPanel implements Runnable {
     final int originalSize = 24; // 16x16 tile is now 24x24 tile :)
     final int scale = 3;
@@ -54,11 +46,7 @@ public class AppPanel extends JPanel implements Runnable {
     public final int playState = 1;
     public final int pauseState = 2;
     public final int dialogueState = 3;
-
-    // //set player's default position
-    // int playerX=100;
-    // int playerY=100;
-    // int playerSpeed=4; //moving 4 pixels
+    public final int selectCancerState=4;
 
     public AppPanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -69,9 +57,6 @@ public class AppPanel extends JPanel implements Runnable {
     }
 
     public void setupGame() {
-        // aSetter.setObject();
-        // aSetter.setNPC();
-        // aSetter.setMonster();
         // playMusic(0);
         gameState = titleState;
     }
@@ -97,24 +82,27 @@ public class AppPanel extends JPanel implements Runnable {
                 delta--;
             }
         }
+        // double drawInterval = 1000000000 / FPS;
+        // double delta = 0;
+        // long lastTime = System.nanoTime();
+        // long currentTime;
+        // while (gameThread != null) {
+        //     currentTime = System.nanoTime();
+        //     delta += (currentTime - lastTime) / drawInterval;
+        //     lastTime = currentTime;
+        //     if (delta >= 1) {
+        //         update();
+        //         repaint();
+        //         delta--;
+        //     }
+        // }
     }
 
     public void update() {
         if (gameState == playState) {
             // player
             // player.update();
-            // // npc
-            // for (int i = 0; i < npc.length; i++) {
-            // if (npc[i] != null) {
-            // npc[i].update();
-            // }
-            // }
-            // // monsters
-            // for (int i = 0; i < monster.length; i++) {
-            // if (monster[i] != null) {
-            // monster[i].update();
-            // }
-            // }
+
         }
         if (gameState == pauseState) {
             // nothing -- don't update player info while game is paused
@@ -135,23 +123,6 @@ public class AppPanel extends JPanel implements Runnable {
         if (gameState == titleState) {
             ui.draw(g2);
         } else {
-            // tile
-            // tileM.draw(g2);
-
-            // add entities to list
-            // entityList.add(player);
-            // for (int i = 0; i < npc.length; i++) {
-            // if (npc[i] != null)
-            // entityList.add(npc[i]);
-            // }
-            // for (int i = 0; i < obj.length; i++) {
-            // if (obj[i] != null)
-            // entityList.add(obj[i]);
-            // }
-            // for (int i = 0; i < monster.length; i++) {
-            // if (monster[i] != null)
-            // entityList.add(monster[i]);
-            // }
 
             // sort
             Collections.sort(entityList, new Comparator<Entity>() {

@@ -1,9 +1,10 @@
 package App.main;
-
+import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 import java.text.DecimalFormat;
 import App.user.Entity;
+import App.main.GraphOfCalories;
 
 // import object.heart;
 // import object.Ribbons.ribbon1;
@@ -22,7 +23,7 @@ public class UI {
     public int commandNum = 0;
     public int titleScreenState = 0; // 0:first screen, 1:second screen
 
-    double playTime;
+    // double playTime;
     DecimalFormat dFormat = new DecimalFormat("#0.00"); // display up to 2 decimals
 
     public UI(AppPanel ap) {
@@ -37,14 +38,6 @@ public class UI {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // ribbon1 r1=new ribbon1(ap);
-        // ribbon1Image=r1.image;
-
-        // create HUD object
-        // Entity heart=new heart(ap);
-        // heart_full=heart.image;
-        // heart_half=heart.image2;
-        // heart_blank=heart.image3;
     }
 
     public void showMessage(String text) {
@@ -64,7 +57,10 @@ public class UI {
         if (ap.gameState == ap.titleState) {
             drawTitleScreen();
         }
-
+        //selecting type of cancer state
+        if(ap.gameState==ap.selectCancerState) {
+            selectMenu();
+        } 
         // play state
         if (ap.gameState == ap.playState) {
             // drawPlayerLife();
@@ -93,7 +89,7 @@ public class UI {
             y = ap.screenHeight / 2 - (ap.tileSize * 3);
             g2.drawString(text, x, y);
 
-            text = "You Time is:" + dFormat.format(playTime) + "!";
+            // text = "You Time is:" + dFormat.format(playTime) + "!";
             textLength = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
             // align text to center
             x = ap.screenWidth / 2 - textLength / 2;
@@ -119,8 +115,8 @@ public class UI {
             // g2.drawString("x " + ap.player.hasRibbons,74,54); // the y is the baseline
 
             // time
-            playTime += (double) 1 / 60;
-            g2.drawString("Time:" + dFormat.format(playTime), ap.tileSize * 11, 54);
+            // playTime += (double) 1 / 60;
+            // g2.drawString("Time:" + dFormat.format(playTime), ap.tileSize * 11, 54);
 
             // message
             if (messageOn) {
@@ -137,37 +133,46 @@ public class UI {
 
     }
 
-    // public void drawPlayerLife() {
-    // //ap.player.life=5; //player has 2.5 hearts
-    // int x=ap.tileSize/2;
-    // int y=ap.tileSize/2;
-    // int i=0;
-
-    // //draw max life
-    // while(i<ap.player.maxLife/2) {
-    // g2.drawImage(heart_blank,x,y,null);
-    // i++;
-    // x+=ap.tileSize;
-    // }
-
-    // //reset
-    // x=ap.tileSize/2;
-    // y=ap.tileSize/2;
-    // i=0;
-
-    // //draw current life
-    // while(i<ap.player.life) {
-    // i++;
-    // if(i<ap.player.life) {
-    // g2.drawImage(heart_full,x,y,null);
-    // i++;
-    // }
-    // else {
-    // g2.drawImage(heart_half,x,y,null);
-    // }
-    // x+=ap.tileSize;
-    // }
-    // }
+    public void selectMenu() {
+        JFrame frame = new JFrame("Selection");
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // frame.setSize(500, 500);
+        frame.setSize(72*20,72*11);
+        frame.setLocation(430, 100);
+    
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+    
+        frame.add(panel);
+    
+        JLabel lbl = new JLabel("Select one of the possible conditions and click OK");
+        lbl.setAlignmentX(Component.CENTER_ALIGNMENT);
+    
+        panel.add(lbl);
+    
+        String[] choices = { "Bladder Cancer", "Brain Cancer", "Bone Cancer", "Breast Cancer",
+                             "Cervical Cancer", "Colon  Cancer", "Kidney Cancer", "Leukemia Cancer", "Lung Cancer", 
+                            "Mesothelioma", "Ovarian Cancer", "Pancreatic Cancer", "Prostate Cancer", "Thyroid Cancer",
+                            "Uterine Cancer"};
+    
+        final JComboBox<String> cb = new JComboBox<String>(choices);
+    
+        cb.setMaximumSize(cb.getPreferredSize());
+        cb.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(cb);
+    
+        JButton btn = new JButton("OK");
+        btn.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(btn);
+        frame.setVisible(true);
+        if(btn.getModel().isPressed()) {
+            System.out.println("button is pressed!");
+            ap.gameState=ap.playState;
+            //exit this screen
+            frame.setVisible(false);
+        }
+    }
 
     public void drawTitleScreen() {
         if (titleScreenState == 0) {
@@ -203,7 +208,7 @@ public class UI {
                 g2.drawString(">", x - ap.tileSize, y);
             }
 
-            text = "LOAD GAME";
+            text = "LOAD ENTRY";
             x = getXforCenteredText(text);
             y += ap.tileSize;
             g2.drawString(text, x, y);
@@ -223,12 +228,12 @@ public class UI {
             g2.setColor(Color.white);
             g2.setFont(g2.getFont().deriveFont(42F));
 
-            String text = "Select your class!";
+            String text = "Enter some information to get started!";
             int x = getXforCenteredText(text);
             int y = ap.tileSize * 3;
             g2.drawString(text, x, y);
 
-            text = "Fighter";
+            text = "Female";
             x = getXforCenteredText(text);
             y += ap.tileSize * 3;
             g2.drawString(text, x, y);
@@ -236,7 +241,7 @@ public class UI {
                 g2.drawString(">", x - ap.tileSize, y);
             }
 
-            text = "Thief";
+            text = "Male";
             x = getXforCenteredText(text);
             y += ap.tileSize;
             g2.drawString(text, x, y);
@@ -244,19 +249,19 @@ public class UI {
                 g2.drawString(">", x - ap.tileSize, y);
             }
 
-            text = "Sorcerer";
-            x = getXforCenteredText(text);
-            y += ap.tileSize;
-            g2.drawString(text, x, y);
-            if (commandNum == 2) {
-                g2.drawString(">", x - ap.tileSize, y);
-            }
-
+            // text = "Sorcerer";
+            // x = getXforCenteredText(text);
+            // y += ap.tileSize;
+            // g2.drawString(text, x, y);
+            // if (commandNum == 2) {
+            //     g2.drawString(">", x - ap.tileSize //overall rectangle, y);
+            // }
+ //the visual rectacngle
             text = "Back";
             x = getXforCenteredText(text);
             y += ap.tileSize * 2;
             g2.drawString(text, x, y);
-            if (commandNum == 3) {
+            if (commandNum == 2) {
                 g2.drawString(">", x - ap.tileSize, y);
             }
         }
@@ -269,6 +274,24 @@ public class UI {
         int x = getXforCenteredText(text);
         g2.drawString(text, x, y);
     }
+
+    // public void drawCaloriesGraph() {
+    //     g2.setColor(Color.LIGHT_GRAY);       // code to draw rectangles goes here...
+
+    //     g2.drawRect(10, 10, 2000, 2500);
+
+    //     double graphHeight = 3000;
+    //     double fractionOfHeight = (((double) GraphOfCalories.caloriesAmt)/3000) *2000;
+
+    //     g2.drawRect(20, 2400 - fractionOfHeight, 20, fractionOfHeight);
+
+        
+    //     g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 80F));
+    //     String text = "Graph of Your Caloric Intake for Today";
+    //     g2.drawString(text, 15, 15);
+        
+    // }
+    
 
     public void drawDialogueScreen() {
         // dialogue window
@@ -307,4 +330,6 @@ public class UI {
         int x = ap.screenWidth / 2 - length / 2;
         return x;
     }
+
+    
 }
