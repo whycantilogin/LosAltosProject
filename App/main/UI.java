@@ -201,7 +201,7 @@ public class UI implements Runnable{
         else proteinArea.setForeground(Color.GREEN);
         proteinArea.setHorizontalAlignment(JLabel.CENTER);
         proteinArea.setFont(new Font("Serif", Font.PLAIN, 40));
-        proteinArea.setText("The suggested amount of protein for you was "+(d.suggestedMinProtein+d.suggestedMaxProtein)/2+", and your intake was "+percentage+"% of that.");
+        proteinArea.setText("The suggested amount of protein for you was "+(d.suggestedMinProtein+d.suggestedMaxProtein)/2+"g, and your intake was "+percentage+"% of that.");
 
         JLabel caloriesArea=new JLabel();
         int cal_min=0;
@@ -221,7 +221,7 @@ public class UI implements Runnable{
         else caloriesArea.setForeground(Color.GREEN);
         caloriesArea.setHorizontalAlignment(JLabel.CENTER);
         caloriesArea.setFont(new Font("Serif", Font.PLAIN, 40));
-        caloriesArea.setText("The suggested amount of calories for you was "+(cal_min+cal_max)/2.0+", and your intake was "+percentage+"% of that.");
+        caloriesArea.setText("The suggested amount of calories for you was "+(cal_min+cal_max)/2.0+" calories, and your intake was "+percentage+"% of that.");
 
         JLabel vitaminsArea=new JLabel();
         percentage=(Integer.parseInt(vitaminField.getText())/(d.suggestedMinVitaminD+d.suggestedMaxVitaminD)/2.0)*100.0;
@@ -231,7 +231,7 @@ public class UI implements Runnable{
         else vitaminsArea.setForeground(Color.GREEN);
         vitaminsArea.setHorizontalAlignment(JLabel.CENTER);
         vitaminsArea.setFont(new Font("Serif", Font.PLAIN, 40));
-        vitaminsArea.setText("The suggested amount of vitamins for you was "+(d.suggestedMinVitaminD+d.suggestedMaxVitaminD)/2+", and your intake was "+percentage+"% of that.");
+        vitaminsArea.setText("The suggested amount of vitamins for you was "+(d.suggestedMinVitaminD+d.suggestedMaxVitaminD)/2+"mg, and your intake was "+percentage+"% of that.");
 
         JLabel sugarArea=new JLabel();
         percentage=(Integer.parseInt(sugarField.getText()))/((double)d.suggestedSugar)*100.0;
@@ -241,7 +241,7 @@ public class UI implements Runnable{
         else sugarArea.setForeground(Color.GREEN);
         sugarArea.setHorizontalAlignment(JLabel.CENTER);
         sugarArea.setFont(new Font("Serif", Font.PLAIN, 40));
-        sugarArea.setText("The suggested amount of sugar for you was "+(d.suggestedSugar)+", and your intake was "+percentage+"% of that.");
+        sugarArea.setText("The suggested amount of sugar for you was "+(d.suggestedSugar)+"g, and your intake was "+percentage+"% of that.");
 
         JLabel vegetablesArea=new JLabel();
         percentage=Integer.parseInt(vegField.getText())/d.suggestedVegetable*100;
@@ -251,7 +251,7 @@ public class UI implements Runnable{
         else vegetablesArea.setForeground(Color.GREEN);
         vegetablesArea.setHorizontalAlignment(JLabel.CENTER);
         vegetablesArea.setFont(new Font("Serif", Font.PLAIN, 40));
-        vegetablesArea.setText("The suggested amount of vegetables for you was "+d.suggestedVegetable+", and your intake was "+percentage+"% of that.");
+        vegetablesArea.setText("The suggested amount of vegetables for you was "+d.suggestedVegetable+" cups, and your intake was "+percentage+"% of that.");
 
         panel.add(proteinArea);
         panel.add(caloriesArea);
