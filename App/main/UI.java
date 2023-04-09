@@ -1,7 +1,9 @@
 package App.main;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.text.DecimalFormat;
 // import App.main.BarChart;
@@ -33,6 +35,7 @@ public class UI implements Runnable{
     public JTextField vegField=new JTextField("10");
     public JTextField caloriesField = new JTextField("10");
     public JTextField weightField= new JTextField("10");
+    public JTextField heightField = new JTextField("10");
     public boolean saveIsClicked=false;
     public String cancerType;
 
@@ -200,7 +203,7 @@ public class UI implements Runnable{
         }
         else proteinArea.setForeground(Color.GREEN);
         proteinArea.setHorizontalAlignment(JLabel.CENTER);
-        proteinArea.setFont(new Font("Serif", Font.PLAIN, 40));
+        proteinArea.setFont(new Font("Marker Felt", Font.PLAIN, 35));
         proteinArea.setText("The suggested amount of protein for you was "+(d.suggestedMinProtein+d.suggestedMaxProtein)/2+"g, and your intake was "+percentage+"% of that.");
 
         JLabel caloriesArea=new JLabel();
@@ -214,50 +217,69 @@ public class UI implements Runnable{
             cal_min=d.suggestedMinCaloriesWomen;
             cal_max=d.suggestedMaxCaloriesWomen;
         }
-        percentage=(Integer.parseInt(caloriesField.getText())/(cal_min+cal_max)/2.0)*100.0;
+        percentage=(Integer.parseInt(caloriesField.getText())/((cal_min+cal_max)/2.0))*100.0;
+
+        percentage = ((int)percentage*100)/100.0;
         if(Integer.parseInt(caloriesField.getText())>cal_max || Integer.parseInt(caloriesField.getText())<cal_min) {
             caloriesArea.setForeground(Color.RED);
         }
         else caloriesArea.setForeground(Color.GREEN);
         caloriesArea.setHorizontalAlignment(JLabel.CENTER);
-        caloriesArea.setFont(new Font("Serif", Font.PLAIN, 40));
+        caloriesArea.setFont(new Font("Marker Felt", Font.PLAIN, 35));
         caloriesArea.setText("The suggested amount of calories for you was "+(cal_min+cal_max)/2.0+" calories, and your intake was "+percentage+"% of that.");
 
         JLabel vitaminsArea=new JLabel();
-        percentage=(Integer.parseInt(vitaminField.getText())/(d.suggestedMinVitaminD+d.suggestedMaxVitaminD)/2.0)*100.0;
+        percentage=(Integer.parseInt(vitaminField.getText())/((d.suggestedMinVitaminD+d.suggestedMaxVitaminD)/2.0))*100.0;
         if(Integer.parseInt(vitaminField.getText())>d.suggestedMaxVitaminD || Integer.parseInt(vitaminField.getText())<d.suggestedMinVitaminD) {
             vitaminsArea.setForeground(Color.RED);
         }
         else vitaminsArea.setForeground(Color.GREEN);
+
+        percentage = ((int)percentage*100)/100.0;
         vitaminsArea.setHorizontalAlignment(JLabel.CENTER);
-        vitaminsArea.setFont(new Font("Serif", Font.PLAIN, 40));
+        vitaminsArea.setFont(new Font("Marker Felt", Font.PLAIN, 35));
         vitaminsArea.setText("The suggested amount of vitamins for you was "+(d.suggestedMinVitaminD+d.suggestedMaxVitaminD)/2+"mg, and your intake was "+percentage+"% of that.");
 
         JLabel sugarArea=new JLabel();
         percentage=(Integer.parseInt(sugarField.getText()))/((double)d.suggestedSugar)*100.0;
+        percentage = ((int)percentage*100)/100.0;
         if(Integer.parseInt(sugarField.getText())>d.suggestedSugar) {
             sugarArea.setForeground(Color.RED);
         }
         else sugarArea.setForeground(Color.GREEN);
         sugarArea.setHorizontalAlignment(JLabel.CENTER);
-        sugarArea.setFont(new Font("Serif", Font.PLAIN, 40));
+        sugarArea.setFont(new Font("Marker Felt", Font.PLAIN, 35));
         sugarArea.setText("The suggested amount of sugar for you was "+(d.suggestedSugar)+"g, and your intake was "+percentage+"% of that.");
 
         JLabel vegetablesArea=new JLabel();
         percentage=Integer.parseInt(vegField.getText())/d.suggestedVegetable*100;
+        percentage = ((int)percentage*100)/100.0;
         if(Integer.parseInt(vegField.getText())<d.suggestedVegetable-0.05) {
             vegetablesArea.setForeground(Color.RED);
         }
         else vegetablesArea.setForeground(Color.GREEN);
         vegetablesArea.setHorizontalAlignment(JLabel.CENTER);
-        vegetablesArea.setFont(new Font("Serif", Font.PLAIN, 40));
+        vegetablesArea.setFont(new Font("Marker Felt", Font.PLAIN, 35));
         vegetablesArea.setText("The suggested amount of vegetables for you was "+d.suggestedVegetable+" cups, and your intake was "+percentage+"% of that.");
+
+        JLabel BMILabel=new JLabel();
+        BMILabel.setFont(new Font("Marker Felt", Font.PLAIN, 35));
+        double heightSquared = Math.pow(((double)Integer.parseInt(heightField.getText()))/100.0, 2);
+        double bmi = Integer.parseInt(weightField.getText())/heightSquared;
+        //double bmi = Integer.parseInt(weightField.getText())/((Integer.parseInt(heightField.getText())*100.0)*(Integer.parseInt(heightField.getText())*100.0));
+        BMILabel.setHorizontalAlignment(JLabel.CENTER);
+        bmi = ((int)(bmi*10))/10.0;
+        BMILabel.setText("Your BMI (body mass index) is: "+bmi);
+        // BufferedImage myPicture = ImageIO.read(new File("App/res/bmiChart.png"));
+        // JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 
         panel.add(proteinArea);
         panel.add(caloriesArea);
         panel.add(vitaminsArea);
         panel.add(sugarArea);
         panel.add(vegetablesArea);
+        panel.add(BMILabel);
+        // panel.add(picLabel);
         // drawRectangle dr=new drawRectangle();
         // dr.setRectValues(30, 200, 20, Integer.parseInt(proteinField.getText()));
         // dr.paintComponent(g2);
@@ -369,10 +391,9 @@ public class UI implements Runnable{
         // JLabel genderLabel = new JLabel("Gender (male/female/nonbinary):");
         // JTextField genderField = new JTextField("Type your gender");
         JLabel weightLabel = new JLabel("Weight (kg):");
-        JTextField weightField = new JTextField("Type your weight");
+        //JTextField weightField = new JTextField("Type your weight");
         // this.weightField = new JTextField("10");
         JLabel heightLabel = new JLabel("Height (cm):");
-        JTextField heightField = new JTextField("Type your height");
         
         JButton saveButton = new JButton("Save");
         
